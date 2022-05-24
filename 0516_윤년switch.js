@@ -21,3 +21,5 @@ switch (month) {
 }
 
 console.log(days) // 29
+
+// 커밋 메시지 컨벤션 적용
