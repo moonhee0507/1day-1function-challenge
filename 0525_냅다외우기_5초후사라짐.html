@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="alert alert-danger">
+        <span id="count">5</span>초 뒤 🔥
+    </div>
+    
+    <script>
+        // 정의
+        const counter = document.querySelector('#count');
+        const alert = document.querySelector('.alert');
+
+        // 5초 정의(변함)
+        let count = 5;
+
+        // 5초 끝나면 어떻게 할지
+        let timerEnd = setInterval(function() {
+            alert.remove('.alert');
+        }, 5000);
+
+        // 어떻게 카운트 할지
+        setInterval(function() {
+            count --;
+            if (count >= 0) {
+                counter.innerHTML = count;
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
