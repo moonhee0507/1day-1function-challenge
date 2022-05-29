@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 5초 후 사라짐 -->
+    <!-- <div class="alert alert-danger">
+        <span id="count">5</span>초 뒤 🔥
+    </div> -->
+
+    <!-- 퀴즈 판독기 -->
+    <p>태조 이성계가 태어난 연도는?</p>
+    <input type="text" id="answer">
+    <button type="submit" id="send-answer">정답확인</button>
+    <script>
+        // // 5초 후 사라짐
+        // // 정의
+        // const counter = document.querySelector('#count');
+        // const alert = document.querySelector('.alert');
+
+        // // 5초 정의(변함)
+        // let count = 5;
+
+        // // 5초 끝나면 어떻게 할지
+        // let timerEnd = setInterval(function() {
+        //     alert.remove('.alert');
+        // }, 5000);
+
+        // // 어떻게 카운트 할지
+        // setInterval(function() {
+        //     count --;
+        //     if (count >= 0) {
+        //         counter.innerHTML = count;
+        //     }
+        // }, 1000);
+
+        // 퀴즈 판독기
+        const answerBtn = document.querySelector('#send-answer');
+        let count = 0;
+
+        // 클릭 이벤트
+        answerBtn.addEventListener('click', function() {
+            // 클릭하면 기본동작 count
+            count++;
+
+            // answer 정의
+            const answer = document.querySelector('#answer').value;
+
+            // 콘솔창 표시
+            console.log(answer);
+
+            // if 전개
+            if (answer == 1335) {
+                alert('정답!');
+                count = 0;
+            } else if (answer !== 1335 && count < 3) {
+                alert('땡');
+            } else if (answer !== 1335 && count >= 3) {
+                alert('멍청아! 공부 다시 해와라?');
+            }
+        });
+    </script>
+</body>
+</html>
