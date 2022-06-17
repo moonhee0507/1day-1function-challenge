@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카운트다운 타이머</title>
+</head>
+<body>
+    
+    <h1 id = "count-down-timer"></h1>
+
+    <script>
+        // 10 미만의 숫자를 00 형식으로 만들어주는 함수
+        function timerNumFormat(num) {
+            return num < 10 ? "0" + num : num;
+        }
+
+        // 카운트다운하는 함수
+        function startCountDown(duration, element) {
+            
+            let secondsRemaining = duration;
+            let hour, min, sec = 0;
+
+            // 1초마다 반복실행
+            let countInterval = setInterval(function() {
+                hour = parseInt(secondsRemaining / 3600)
+                min = parseInt(secondsRemaining / 3600 % 60)
+                sec = parseInt(secondsRemaining % 60)
+
+                // element(h1)에 보여줄 내용
+                element.textContent = `${timerNumFormat(hour)}:${timerNumFormat(min)}:${timerNumFormat(sec)}`;
+
+                secondsRemaining -= 1;
+
+                // duration이 0미만이면 setInterval 종료
+                if (secondsRemaining < 0) { clearInterval(countInterval) }
+            }, 1000);
+        }
+
+        // 로드 후 초기값 세팅(커스텀 가능)
+        window.onload = function() {
+            let time_hour = 0;
+            let min_hour = 0;
+            let sec_hour = 15;
+
+            // 초 단위로 계산하는 기능
+            let duration = (time_hour * 3600) + (min_hour * 60) + (sec_hour);
+            let element = document.querySelector('#count-down-timer');
+
+            // 로드 후 보이는 카운트 내용
+            element.textContent = `${timerNumFormat(time_hour)}:${timerNumFormat(min_hour)}:${timerNumFormat(sec_hour)}`;
+
+            // startCountDown 함수 실행
+            startCountDown(--duration, element);
+        }
+
+    </script>
+</body>
+</html>
