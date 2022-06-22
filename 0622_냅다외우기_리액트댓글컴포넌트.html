@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>댓글 컴포넌트</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script
+        src="https://unpkg.com/react@17/umd/react.development.js"
+        crossorigin
+    ></script>
+    <script
+        src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+        crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+        const styles = {
+            wrapper: {
+            margin: 8,
+            padding: 8,
+            display: "flex",
+            flexDirection: "row",
+            border: "1px solid grey",
+            borderRadius: 16,
+            },
+            imageContainer: {},
+            image: {
+            width: 50,
+            height: 50,
+            borderRadius: 25,
+            },
+            contentContainer: {
+            marginLeft: 8,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            },
+            nameText: {
+            color: "black",
+            fontSize: 16,
+            fontWeight: "bold",
+            },
+            commentText: {
+            color: "black",
+            fontSize: 16,
+            },
+        };
+
+        const comments = [
+            {
+                name: "소플",
+                comment: "안녕하세요, 소플입니다.",
+            },
+            {
+                name: "나영",
+                comment: "리액트 너무 어려워요",
+            },
+            {
+                name: "멋사",
+                comment: "저도 배워보고 싶어요!",
+            },
+        ];
+
+        // 댓글 컴포넌트 만들기
+        function Comment(props) {
+            console.log(props)
+            return (
+                <div style={styles.wrapper}>
+                    <div style={styles.imageContainer}>
+                        <img 
+                            src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" 
+                            style={styles.image}
+                            alt="" 
+                        />
+                    </div>
+                    <div style={styles.contentContainer}>
+                        <span style={styles.nameText}>{props.name}</span>
+                        <span style={styles.commentText}>{props.comment}</span>
+                    </div>
+                </div>
+            );
+        }
+
+        function CommentList(props) {
+            return (
+                <div>
+                    {comments.map((comment) => {
+                        return <Comment name={comment.name} comment={comment.comment}/>
+                    })}
+                </div>
+            );
+        }
+
+        ReactDOM.render(
+            <React.StrictMode>
+                <CommentList />
+            </React.StrictMode>,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+</html>
