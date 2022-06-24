@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>리액트 투두</title>
+    </head>
+    <body>
+        <div id="root"></div>
+        <!-- body 태그 닫는 위치 주의 -->
+    </body> 
+        <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script type="text/babel">
+            function App() {
+                const [toDo, setToDo] = React.useState('');
+                const [toDos, setToDos] = React.useState([]);
+
+                const onChange = (e) => setToDo(e.target.value);
+                const onSubmit = (e) => {
+                    // 섭밋 후 초기화하는 기능
+                    e.preventDefault();
+
+                    // 입력 안하면 아무일도 안일어하게 하는 기능
+                    if (toDo === '') return;
+
+                    // 배열에 추가하는 기능
+                    setToDos((currentArray) => [toDo, ...currentArray]);
+
+                    // 인풋값 비우는 기능
+                    setToDo('');
+
+                };
+
+                console.log(toDo);
+                console.log(toDos);
+
+                return (
+                    <div>
+                        <h1>My to do list ({toDos.length})</h1>
+                        <form onSubmit={onSubmit}>
+                            <input 
+                                value={toDo}
+                                onChange={onChange}
+                                type="text"
+                                placeholder="Write you do list"
+                            />
+                            <button>Add to list</button>
+                        </form>
+                    </div>
+                );
+            }
+
+            const root = document.getElementById('root');
+            ReactDOM.render(<App />, root);
+        </script>
+</html>
